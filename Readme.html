@@ -1,0 +1,41 @@
+<html>
+<head>
+<title>Java Ostclient Notes</title>
+</head>
+<body>
+<h1>Running as an application</h1>
+<p>
+ The Java client will run as either an application or as an applet. To
+run it as an application, the following command should work:
+<p>
+<pre>
+   java -jar ostclient.jar
+</pre>
+<p>
+<h1>Running as an Applet</h1>
+<p>
+ The file <a href="AppletExample.html">AppletExample.html</a> shows
+the HTML code used to embed the applet into a web page. There are two
+optional parameters that can be provided to the applet:
+<p>
+<ul>
+  <li>OSTHOST - The host the applet should connect to.
+  <li>OSTPORT - The port to connect on at the above host.
+</ul>
+<p>
+ If they are not provided, the associated fields in the applet will
+be blank.
+<p>
+Note that applets, by default, only have permission to
+intiate socket connections back to the host they were served from.
+So (unless you configure your browser to give the applet extra
+permissions) it will only be able to connect to the webserver that
+served up the webpage it's embedded in. Which therefore implies
+that Ostiary will need to be running on that webserver.
+<p>
+<h1>Source code</h1>
+<p>
+The source for the Java client is in the "/src" directory. A simple
+script to build it called "make.sh" is provided.
+</body>
+</html>
