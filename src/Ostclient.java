@@ -177,7 +177,7 @@ public final class Ostclient extends Applet implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent evt) {
-		int secret_len, nRead;
+		int nRead;
 		byte[] response = null;
 
 		// Here's where the magic happens...
@@ -272,7 +272,6 @@ public final class Ostclient extends Applet implements ActionListener {
 		final int HASH_BIN_SIZE = 32;
 		final int HASH_BLOCK_SIZE = 64;
 		int i;
-		byte[] temp_hash;
 		byte[] out_hash;
 		byte[] hash_input;
 		hash_input = new byte[HASH_BLOCK_SIZE + HASH_BIN_SIZE];
