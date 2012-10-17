@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="javost-4.0/ostclient.jar"/>
+    <options buildIfNeeded="true" compress="false" descriptionLocation="/javost-4.0/ostclient.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="false" mainClassHandleIdentifier="=javost-4.0/src&lt;{Ostclient.java[Ostclient" manifestLocation="/javost-4.0/src/Manifest.txt" manifestVersion="1.0" reuseManifest="true" saveManifest="true" usesManifest="true">
+        <sealing sealJar="true">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <file path="/javost-4.0/AppletExample.html"/>
+        <file path="/javost-4.0/Readme.html"/>
+        <javaElement handleIdentifier="=javost-4.0/src"/>
+    </selectedElements>
+</jardesc>
