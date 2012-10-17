@@ -173,7 +173,7 @@ public final class Ostclient extends Applet implements ActionListener {
 		f.add("Center", ost);
 
 		f.pack();
-		f.show();
+		f.setVisible(true);
 	}
 
 	public void actionPerformed(ActionEvent evt) {
