@@ -20,6 +20,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public final class Ostclient extends Applet implements ActionListener {
+	public static final String HASH_ALGO = "SHA-256";
+	public static final int HASH_SIZE = 32;  // 32 bytes = 256 bits
 	Panel ostpanel;
 	Label rcvdLabel, sentLabel, statLabel;
 	TextField hostField, portField, secretField, statField;
@@ -99,7 +101,7 @@ public final class Ostclient extends Applet implements ActionListener {
 
 		gbc.weightx = 1.0;
 		gbc.gridwidth = GridBagConstraints.REMAINDER; // Ends a row.
-		secretField = new TextField(32);
+		secretField = new TextField(HASH_SIZE * 2);
 		secretField.setEchoChar('*');
 		gbag.setConstraints(secretField, gbc);
 		add(secretField);
@@ -217,7 +219,7 @@ public final class Ostclient extends Applet implements ActionListener {
 
 		// Read the challenge.
 		byte[] challenge;
-		challenge = new byte[20];
+		challenge = new byte[HASH_SIZE];
 		try {
 			nRead = input.read(challenge, 0, challenge.length);
 		} catch (IOException e) {
@@ -269,13 +271,16 @@ public final class Ostclient extends Applet implements ActionListener {
 
 	public static byte[] OstiaryHash(byte[] in_hash, int in_size,
 			byte[] secret, int secret_size) throws NoSuchAlgorithmException {
-		final int HASH_BIN_SIZE = 32;
+		final int HASH_BIN_SIZE = HASH_SIZE;
 		final int HASH_BLOCK_SIZE = 64;
 		int i;
 		byte[] out_hash;
 		byte[] hash_input;
+
+		assert in_size == HASH_SIZE;
+
 		hash_input = new byte[HASH_BLOCK_SIZE + HASH_BIN_SIZE];
-		MessageDigest md1 = MessageDigest.getInstance("SHA-256");
+		MessageDigest md1 = MessageDigest.getInstance(HASH_ALGO);
 
 		for (i = 0; i < hash_input.length; i++) {
 			hash_input[i] = 0;
