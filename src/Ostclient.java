@@ -187,15 +187,25 @@ public final class Ostclient extends Applet implements ActionListener {
 		sentLabel.setText("");
 		statField.setText("");
 
-		Socket MyClient;
+		String host = hostField.getText();
+		String port = portField.getText();
+		if (host.isEmpty() || port.isEmpty()) {
+			statField.setText("Please fill in both host and port fields");
+			return;
+		}
+		
+		Socket MyClient = null;
 		try {
-			MyClient = new Socket(hostField.getText(),
-					Integer.parseInt(portField.getText()));
+			statField.setText("Connecting...");
+			MyClient = new Socket(host, Integer.parseInt(port));
 		} catch (IOException e) {
 			statField.setText("Socket error: " + e.getMessage());
 			return;
 		} catch (SecurityException secEvt) {
 			statField.setText("Security violation: " + secEvt.getMessage());
+			return;
+		} catch (NumberFormatException e) {
+			statField.setText("Format error (did you enter a port number?)");
 			return;
 		}
 
