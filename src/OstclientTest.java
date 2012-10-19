@@ -59,7 +59,13 @@ public class OstclientTest extends TestCase {
 		
 		byte[] hash = Ostclient.OstiaryHash(challenge, challenge.length, secret, secret.length);
 		assertEquals(Ostclient.HASH_SIZE, hash.length);
-		assertEquals(responseString, new BigInteger(1,hash).toString(16));
+		assertTrue(responseString.equalsIgnoreCase(new BigInteger(1,hash).toString(16)));
+		
+		// Obviously a different secret should yield a different hash
+		secret = "Fnord".getBytes();
+		hash = Ostclient.OstiaryHash(challenge, challenge.length, secret, secret.length);
+		assertEquals(Ostclient.HASH_SIZE, hash.length);
+		assertFalse(responseString.equalsIgnoreCase(new BigInteger(1,hash).toString(16)));
 	}
 
 }
