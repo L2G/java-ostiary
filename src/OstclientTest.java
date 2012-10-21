@@ -55,17 +55,19 @@ public class OstclientTest extends TestCase {
 		assertEquals(6, secret.length);
 		
 		byte[] challenge = (new BigInteger(challengeString, 16)).toByteArray();
-		assertEquals(Ostclient.HASH_SIZE, challenge.length);
+		assertEquals(OstiaryHash.HASH_SIZE, challenge.length);
 		
-		byte[] hash = Ostclient.OstiaryHash(challenge, challenge.length, secret, secret.length);
-		assertEquals(Ostclient.HASH_SIZE, hash.length);
-		assertTrue(responseString.equalsIgnoreCase(new BigInteger(1,hash).toString(16)));
+		OstiaryHash oHash = new OstiaryHash(challenge, challenge.length, secret, secret.length);
+		byte[] response = oHash.getResponseHash();
+		assertEquals(OstiaryHash.HASH_SIZE, response.length);
+		assertTrue(responseString.equalsIgnoreCase(new BigInteger(1,response).toString(16)));
 		
 		// Obviously a different secret should yield a different hash
 		secret = "Fnord".getBytes();
-		hash = Ostclient.OstiaryHash(challenge, challenge.length, secret, secret.length);
-		assertEquals(Ostclient.HASH_SIZE, hash.length);
-		assertFalse(responseString.equalsIgnoreCase(new BigInteger(1,hash).toString(16)));
+		oHash = new OstiaryHash(challenge, challenge.length, secret, secret.length);
+		response = oHash.getResponseHash();
+		assertEquals(OstiaryHash.HASH_SIZE, response.length);
+		assertFalse(responseString.equalsIgnoreCase(new BigInteger(1,response).toString(16)));
 	}
 
 }
